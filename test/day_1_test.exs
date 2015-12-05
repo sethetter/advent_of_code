@@ -15,7 +15,7 @@ defmodule AdventOfCode.Day1Test do
   end
 
   test "#first_time_to_basement :: returns current index once floor is -1" do
-    {_, input} = File.read("test/day_1_input_2.txt")
+    {_, input} = File.read("test/day_1_input_3.txt")
     in_basement_at = AdventOfCode.Day1.first_time_to_basement(input)
     assert(in_basement_at == 3)
   end
