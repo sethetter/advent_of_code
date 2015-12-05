@@ -33,6 +33,16 @@ defmodule AdventOfCode.Day2 do
       Integer.parse(h)
     ]
 
-    (2 * l * w) + (2 * w * h) + (2 * h * l)
+    smallest_side = find_smallest_side(l, w, h)
+
+    (2 * l * w) + (2 * w * h) + (2 * h * l) + smallest_side
+  end
+
+  defp find_smallest_side(l, w, h) do
+    side_1 = (l * w)
+    side_2 = (w * h)
+    side_3 = (h * l)
+
+    Enum.min([side_1, side_2, side_3])
   end
 end
