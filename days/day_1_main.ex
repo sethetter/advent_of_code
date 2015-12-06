@@ -1,5 +1,3 @@
-require AdventOfCode.Day1
-
 IO.puts("------- Day 1 -------")
 
 {_, day_1_input} = File.read("input/day_1.txt")
