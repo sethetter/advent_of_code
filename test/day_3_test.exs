@@ -20,4 +20,14 @@ defmodule AdventOfCode.Day3Test do
     unique_destinations = AdventOfCode.Day3.unique_destinations(coords)
     assert(unique_destinations == 4)
   end
+
+  test """
+    #divide_movements
+    - splits movement list in two by every other movement
+  """ do
+    {_, movement_list} = File.read("test/input/day_3_input_1.txt")
+    [santa, robot] = AdventOfCode.Day3.divide_movements(movement_list)
+    assert(santa == "><")
+    assert(robot == "^v")
+  end
 end

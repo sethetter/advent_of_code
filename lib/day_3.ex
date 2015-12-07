@@ -1,5 +1,22 @@
 defmodule AdventOfCode.Day3 do
 
+  def divide_movements(movement_list) do
+    moves = String.codepoints(movement_list) |> filter_invalid_moves
+    divide_movements(moves, [], [], true)
+  end
+
+  defp divide_movements([current | moves], santa_moves, robot_moves, true) do
+    divide_movements(moves, santa_moves ++ [current], robot_moves, false)
+  end
+  
+  defp divide_movements([current | moves], santa_moves, robot_moves, false) do
+    divide_movements(moves, santa_moves, robot_moves ++ [current], true)
+  end
+
+  defp divide_movements([], santa_moves, robot_moves, _) do
+    [Enum.join(santa_moves), Enum.join(robot_moves)]
+  end
+
   # keep a coordinate list, grows with each movement
   def track_movements(movement_list) do
     moves = String.codepoints(movement_list)
@@ -43,4 +60,10 @@ defmodule AdventOfCode.Day3 do
   end
 
   defp unique_destinations([], memory), do: memory
+
+  defp filter_invalid_moves(movements) do
+    Enum.filter(movements, fn(move) ->
+      Regex.match?(~r/\^|v|>|</, move)
+    end)
+  end
 end
